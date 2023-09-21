@@ -30,6 +30,30 @@ It contains `r nrow(early_january_weather)` rows and `r ncol(early_january_weath
 We can tell from the dataset that the mean temperature of the early January in 2013 was about `r round(mean(early_january_weather$temp), 1)` degrees, with a maximum temperature of `r round(max(early_january_weather$temp), 1)` degrees and a minimum temperature of `r round(min(early_january_weather$temp), 1)` degrees.
 
 
-## Section 2: Time vs Time_hour plot
+## Section 2: Temp vs Time_hour plot
+
+I'm installing package required for ggplot
+
+```{r message = FALSE}
+library(tidyverse)
+```
+
+
+I'm making a scatterplot of _temp_ (y) vs _time_hour_ (x); color points using the _humid_ variable, and label the axes.
+
+```{r}
+ggplot(early_january_weather, aes(x = time_hour, y = temp, color = humid)) + 
+      geom_point() +
+      labs(x = "Time (Hour)", y = "Temperature (degrees)", color = "Humidity")
+```
+
+**The plot shows an increasing trend for temperature and humidity as time passes within this period of time.**
+
+
+Export scatterplot to project directory
+
+```{r}
+ggsave("Temp vs Time_hour plot.pdf", height = 4, width = 6)
+```
 
 
