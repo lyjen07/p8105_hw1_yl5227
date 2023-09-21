@@ -7,7 +7,6 @@ output: github_document
 
 # Problem 1
 
-## Section 1
 
 I'm loading the **moderndive** library
 
@@ -22,9 +21,15 @@ data("early_january_weather")
 ```
 
 
-## Section 2
+## Section 1: Short description of the dataset
 
-This dataset records early January weather information in 2013.
+This dataset records weather information, such as _temperature_, _humidity_, _wind speed_ and other weather parameters with a specific date and time, down to the _year_, _month_, _day_, and _hour_.
+
+It contains `r nrow(early_january_weather)` rows and `r ncol(early_january_weather)` columns. 
+
+We can tell from the dataset that the mean temperature of the early January in 2013 was about `r round(mean(early_january_weather$temp), 1)` degrees, with a maximum temperature of `r round(max(early_january_weather$temp), 1)` degrees and a minimum temperature of `r round(min(early_january_weather$temp), 1)` degrees.
 
 
-The mean temperature of the early January in 2013 was about `r round(mean(early_january_weather$temp), 1)` degrees, with a maximum temperature of `r round(max(early_january_weather$temp), 1)` degrees and a minimum temperature of `r round(min(early_january_weather$temp), 1)` degrees.
+## Section 2: Time vs Time_hour plot
+
+
