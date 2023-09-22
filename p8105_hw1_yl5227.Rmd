@@ -21,16 +21,16 @@ data("early_january_weather")
 ```
 
 
-## Section 1: Short description of the dataset
+## Short description of the dataset
 
-This dataset records weather information, such as _temperature_, _humidity_, _wind speed_ and other weather parameters with a specific date and time, down to the _year_, _month_, _day_, and _hour_.
+This dataset records weather information, such as _temperature_, _humidity_, _wind speed_ and other weather parameters with a specific date and time, down to the _year_, _month_, _day_, and _hour_. It is worth to notice that there are missing values for variables _wind_gust_ and _pressure_.
 
 It contains `r nrow(early_january_weather)` rows and `r ncol(early_january_weather)` columns. 
 
 We can tell from the dataset that the mean temperature of the early January in 2013 was about `r round(mean(early_january_weather$temp), 1)` degrees, with a maximum temperature of `r round(max(early_january_weather$temp), 1)` degrees and a minimum temperature of `r round(min(early_january_weather$temp), 1)` degrees.
 
 
-## Section 2: Temp vs Time_hour plot
+## Temp vs Time_hour plot
 
 I'm installing package required for ggplot
 
@@ -57,3 +57,46 @@ ggsave("Temp vs Time_hour plot.pdf", height = 4, width = 6)
 ```
 
 
+
+# Problem 2
+
+
+Create a data frame comprised of:
+
+*   a random sample of size 10 from a standard Normal distribution
+
+*   a logical vector indicating whether elements of the sample are greater than 0
+
+*   a character vector of length 10
+
+*   a factor vector of length 10, with 3 different factor “levels”
+
+```{r}
+df = tibble(
+    rsam = rnorm(10),
+    logical = rsam > 0,
+    char = c("A", "B", "C", "D","E", "F", "G", "H","I", "J"),
+    fac = factor(c("low", "medium", "high", "low", "medium", "high", "low", "medium", "high", "low"))
+  )
+```
+
+
+Take the mean of each variable in dataframe **df**.
+
+```{r warning=FALSE}
+mean(pull(df, rsam))
+mean(pull(df, logical))
+mean(pull(df, char))
+mean(pull(df, fac))
+```
+**The mean function works for the random sample and logical vector, but does not work for character vector and factor vector.**
+
+Apply the _as.numeric_ function to the logical, character, and factor variables
+
+```{r try_numeric, results="hide", warning=FALSE}
+as.numeric(pull(df, logical))
+as.numeric(pull(df, char))
+as.numeric(pull(df, fac))
+```
+
+**The _as.numeric_ function works for logical vector and the factor vector, but it doesn’t work for character vector. The _as.numeric_ function transforms the values of logical vector and factor vector into numbers - True to 1 and False to 0, and three levels of factor to 1, 2, and 3.However, converting alphabet characters into numeric values using _as.numeric_ function will return _NA_.**
